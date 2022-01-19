@@ -1,0 +1,43 @@
+<div class="metadata-header">
+  <h1>
+    <span>{{ table.table_name | uppercase }}</span> table metadata
+  </h1>
+</div>
+<div class="table-meta-data">
+  <div class="general">
+    <h4>Table Comment: {{ table.table_comment || "No comment" }}</h4>
+    <h4>From Schema: {{ table.table_schema }}</h4>
+    <h4>Primary Key: {{ getPrimaryKey() }}</h4>
+  </div>
+  <div class="columns">
+    <h3>Columns metadata</h3>
+    <mat-accordion class="headers-align">
+      <mat-expansion-panel *ngFor="let column of columns">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ column.column_name }} </mat-panel-title>
+          <mat-panel-description>
+            {{ column.column_comment || "No comment" }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="column-show-metadata">
+          <h4 *ngIf="column.column_key">
+            <span>Column key type:</span> {{ column.column_key }}
+          </h4>
+          <h4 *ngIf="column.referenced_table_name">
+            <span>References table:</span> {{ column.referenced_table_name }} on
+            the {{ column.referenced_column_name }} column
+          </h4>
+          <h4><span>Data type:</span> {{ column.column_type }}</h4>
+          <h4><span>Is nullable:</span> {{ column.is_nullable }}</h4>
+          <h4>
+            <span>Default value:</span>
+            {{ column.column_default || "No default value" }}
+          </h4>
+          <h4 *ngIf="column.extra">
+            <span>Other properties:</span> {{ column.extra }}
+          </h4>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
