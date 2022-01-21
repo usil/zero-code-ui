@@ -13,6 +13,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FullTable, ZeroCodeService } from './services/zero-code.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-zero-tables',
@@ -22,8 +23,9 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ZeroTablesComponent implements OnInit, OnDestroy {
   paramsSubscription!: Subscription;
   tableSubscription: Subscription;
-  sortSubscription!: Subscription;
-  dataSubscription!: Subscription;
+  sortSubscription!: Subscription | undefined;
+  dataSubscription!: Subscription | undefined;
+  tableName = '';
 
   resultsLength = 0;
 
@@ -33,6 +35,7 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
   isLoadingResults = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: any[] = [];
 
@@ -43,12 +46,20 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
   ) {
     this.paramsSubscription = this.activatedRoute.paramMap.subscribe({
       next: (param) => {
+        if (this.sort && this.sort.active) {
+          this.sort.active = '';
+        }
+        this.sortSubscription?.unsubscribe();
+        this.dataSubscription?.unsubscribe();
+        this.dataSubscription = undefined;
+        this.sortSubscription = undefined;
+        this.resultsLength = 0;
         this.table$.next(undefined);
         this.dataSource = [];
         this.displayedColumns = [];
         this.isLoadingResults = true;
-        const tableName = param.get('tableName');
-        this.zcService.getFullTable(tableName || '').subscribe({
+        this.tableName = param.get('tableName') || '';
+        this.zcService.getFullTable(this.tableName || '').subscribe({
           next: (res) => {
             this.displayedColumns = res.content.columns.map(
               (column) => column.column_name
@@ -68,16 +79,25 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
 
     this.tableSubscription = this.table$.subscribe((table) => {
       if (table === undefined) return;
-      this.dataSubscription = merge(this.paginator.page)
+      if (this.sortSubscription === undefined) {
+        this.sortSubscription = this.sort.sortChange.subscribe(
+          () => (this.paginator.pageIndex = 0)
+        );
+      }
+      this.dataSubscription = merge(this.paginator.page, this.sort.sortChange)
         .pipe(
           startWith({}),
           switchMap(() => {
             this.errorMessage = undefined;
             this.isLoadingResults = true;
+            this.sort.active = this.sort.active || table.columns[0].column_name;
             return this.zcService
-              .queryTable(table.table_name, this.paginator.pageIndex, {
-                filters: [],
-              })
+              .getTable(
+                table.table_name,
+                this.paginator.pageIndex,
+                this.sort.direction,
+                this.sort.active
+              )
               .pipe(
                 catchError((err) => {
                   if (err.error) {
@@ -131,8 +151,8 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
       state: { ...this.table$.value },
     });
   }
-  goToSwagger() {
-    this.zcService.goToSwagger();
+  goToSwagger(tableName: string) {
+    this.zcService.goToSwagger(tableName);
   }
 
   ngOnInit(): void {}

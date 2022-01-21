@@ -19,7 +19,11 @@
       <button (click)="goToMetaData()" color="accent" mat-flat-button>
         View Meta Data
       </button>
-      <button (click)="goToSwagger()" color="primary" mat-stroked-button>
+      <button
+        (click)="goToSwagger(observables.table?.table_name || '')"
+        color="primary"
+        mat-stroked-button
+      >
         View Swagger
       </button>
     </div>
@@ -30,16 +34,18 @@
         </div>
         <div class="example-table-container">
           <table
-            *ngIf="dataSource.length > 0"
             mat-table
             [dataSource]="dataSource"
             class="user-table"
+            matSort
+            matSortDisableClear
+            matSortDirection="asc"
           >
             <ng-container
               *ngFor="let column of observables.table?.columns"
               [matColumnDef]="column.column_name"
             >
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>
                 {{ column.column_name }}
               </th>
               <td mat-cell *matCellDef="let row">

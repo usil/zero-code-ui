@@ -11,8 +11,8 @@ export class ZeroCodeService {
   zeroCodeApi = environment.api + '/api';
 
   constructor(private http: HttpClient) {}
-  goToSwagger() {
-    window.open(this.zeroCodeApi + '/docs');
+  goToSwagger(tableName: string) {
+    window.open(this.zeroCodeApi + `/docs/#/${tableName}`);
   }
 
   getTables(): Observable<TablesResult> {
@@ -36,6 +36,18 @@ export class ZeroCodeService {
       this.zeroCodeApi +
         `/${tableName}/query?pageIndex=${pageIndex}&&itemsPerPage=20`,
       { ...queryBody }
+    );
+  }
+
+  getTable(
+    tableName: string,
+    pageIndex: number,
+    orderType: string,
+    orderByColumn: string
+  ): Observable<QueryPaginationResult> {
+    return this.http.get<QueryPaginationResult>(
+      this.zeroCodeApi +
+        `/${tableName}?pageIndex=${pageIndex}&&itemsPerPage=20&&orderByColumn=${orderByColumn}&&orderType=${orderType}`
     );
   }
 }
