@@ -14,7 +14,7 @@ import { ApplicationPartComponent } from './access/application-part/application-
 import { UserProfileComponent } from './access/user-profile/user-profile.component';
 import { ZeroTablesComponent } from './zero-tables/zero-tables.component';
 import { MetaDataComponent } from './zero-tables/meta-data/meta-data.component';
-import { NodebootOauth2StarterModule } from 'nodeboot-oauth2-starter';
+import { NodebootOauth2StarterModule } from 'nodeboot-oauth2-starter-ui';
 @NgModule({
   declarations: [
     DashboardComponent,
