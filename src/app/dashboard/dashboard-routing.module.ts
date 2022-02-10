@@ -1,6 +1,6 @@
 import { AdminGuard } from './../guards/admin.guard';
 import { UserProfileComponent } from './access/user-profile/user-profile.component';
-import { ApplicationPartComponent } from './access/application-part/application-part.component';
+import { ApplicationResourceComponent } from './access/application-part/application-resource.component';
 import { RoleComponent } from './access/role/role.component';
 import { ClientComponent } from './access/client/client.component';
 import { UserComponent } from './access/user/user.component';
@@ -35,8 +35,8 @@ const routes: Routes = [
         canLoad: [AdminGuard],
       },
       {
-        path: 'auth/part',
-        component: ApplicationPartComponent,
+        path: 'auth/resource',
+        component: ApplicationResourceComponent,
         canActivate: [AdminGuard],
         canLoad: [AdminGuard],
       },
