@@ -1,0 +1,52 @@
+.metadata-header {
+  h1 {
+    margin: 0;
+    span {
+      color: rgb(1, 87, 155);
+    }
+  }
+}
+
+.general {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  h4 {
+    color: grey;
+    font-weight: 300;
+  }
+}
+
+.columns {
+  h3 {
+    color: rgb(1, 87, 155);
+  }
+}
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.column-show-metadata {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  h4 {
+    font-weight: 300;
+    color: rgb(1, 87, 155);
+    span {
+      font-weight: 800;
+      color: black;
+    }
+  }
+}
