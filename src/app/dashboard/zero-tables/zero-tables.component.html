@@ -55,6 +55,14 @@
                     column.data_type === "timestamp"
                   )
                 }}
+                <button
+                  [matTooltip]="row[column.column_name]"
+                  matTooltipClass="example-tooltip-red"
+                  *ngIf="lengthIsSuperior(row[column.column_name])"
+                  class="show-full-button"
+                >
+                  <span><div>...</div></span>
+                </button>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

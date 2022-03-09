@@ -9,7 +9,13 @@ import {
   Subscription,
   switchMap,
 } from 'rxjs';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FullTable, ZeroCodeService } from './services/zero-code.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -19,6 +25,7 @@ import { MatSort } from '@angular/material/sort';
   selector: 'app-zero-tables',
   templateUrl: './zero-tables.component.html',
   styleUrls: ['./zero-tables.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ZeroTablesComponent implements OnInit, OnDestroy {
   paramsSubscription!: Subscription;
@@ -131,6 +138,22 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
     this.table$.complete();
   }
 
+  lengthIsSuperior(variable: any) {
+    if (!variable) return false;
+    if (
+      typeof variable === 'object' &&
+      !Array.isArray(variable) &&
+      variable !== null
+    ) {
+      const jsonVariable = JSON.stringify(variable);
+      if (jsonVariable.length > 150) return true;
+      return false;
+    }
+    const variableString = variable.toString() as string;
+    if (variableString.length > 150) return true;
+    return false;
+  }
+
   convertToDisplayInTable(variable: any, isDate = false) {
     if (isDate) {
       return new Date(variable).toLocaleDateString();
@@ -140,7 +163,15 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
       !Array.isArray(variable) &&
       variable !== null
     ) {
-      return JSON.stringify(variable);
+      const jsonVariable = JSON.stringify(variable);
+      return jsonVariable.substring(0, 150);
+    }
+    if (variable === null) {
+      return 'null';
+    }
+    const variableString = variable.toString() as string;
+    if (variableString.length > 150) {
+      return variableString.substring(0, 150);
     }
     return variable;
   }

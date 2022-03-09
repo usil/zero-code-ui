@@ -42,3 +42,23 @@
     font-size: 16px;
   }
 }
+
+.show-full-button {
+  background-color: white;
+  border-color: rgb(209, 209, 209);
+  border-width: 1px;
+  border-radius: 2px;
+  box-shadow: none;
+  color: white;
+  border-style: solid;
+  &:hover {
+    background-color: rgb(241, 241, 241);
+  }
+  span {
+    color: black;
+  }
+}
+
+.example-tooltip-red {
+  font-size: 12px !important;
+}

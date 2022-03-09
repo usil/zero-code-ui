@@ -10,7 +10,7 @@ import { AccessComponent } from './access/access.component';
 import { UserComponent } from './access/user/user.component';
 import { ClientComponent } from './access/client/client.component';
 import { RoleComponent } from './access/role/role.component';
-import { ApplicationPartComponent } from './access/application-part/application-part.component';
+import { ApplicationResourceComponent } from './access/application-part/application-resource.component';
 import { UserProfileComponent } from './access/user-profile/user-profile.component';
 import { ZeroTablesComponent } from './zero-tables/zero-tables.component';
 import { MetaDataComponent } from './zero-tables/meta-data/meta-data.component';
@@ -24,7 +24,7 @@ import { NodebootOauth2StarterModule } from 'nodeboot-oauth2-starter-ui';
     UserComponent,
     ClientComponent,
     RoleComponent,
-    ApplicationPartComponent,
+    ApplicationResourceComponent,
     UserProfileComponent,
     ZeroTablesComponent,
     MetaDataComponent,
