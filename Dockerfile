@@ -1,13 +1,13 @@
 FROM node:14
 
-RUN mkdir /src
-WORKDIR /src
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
 
-COPY . /src
 RUN npm install
+COPY . ./
+
 RUN npm run build
 
-COPY DockerfileEntryPoint.sh /usr/local/bin/DockerfileEntryPoint.sh
-RUN chmod 744 /usr/local/bin/DockerfileEntryPoint.sh
-
-ENTRYPOINT ["DockerfileEntryPoint.sh"]
+EXPOSE 2110
+ENTRYPOINT ["npm","run","start"]
