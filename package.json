@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "start": "nodeboot-spa-server dist/zero-code-ui -s settings.json --allow-routes",
+    "start": "nodeboot-spa-server dist/zero-code-ui -s settings.json -p 2112 --allow-routes",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
