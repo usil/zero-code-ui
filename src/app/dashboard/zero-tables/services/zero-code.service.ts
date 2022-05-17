@@ -39,6 +39,12 @@ export class ZeroCodeService {
     );
   }
 
+  refreshEndpoints() {
+    return this.http
+      .post(this.zeroCodeApi + `/zero-code/refresh`, {})
+      .pipe(first());
+  }
+
   getTable(
     tableName: string,
     pageIndex: number,

@@ -62,3 +62,21 @@
 .example-tooltip-red {
   font-size: 12px !important;
 }
+
+.container-load {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 99999;
+}
+
+.inner {
+  padding: 12px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}

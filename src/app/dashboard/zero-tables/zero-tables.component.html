@@ -26,6 +26,9 @@
       >
         View Swagger
       </button>
+      <button (click)="refreshEndpoints()" color="primary" mat-stroked-button>
+        Refresh Endpoints
+      </button>
     </div>
     <div class="db-table-body">
       <div class="container-table mat-elevation-z8">
@@ -77,4 +80,7 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="refreshing" class="container-load">
+  <mat-spinner class="inner"></mat-spinner>
 </div>

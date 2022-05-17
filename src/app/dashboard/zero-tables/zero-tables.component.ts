@@ -29,12 +29,15 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ZeroTablesComponent implements OnInit, OnDestroy {
   paramsSubscription!: Subscription;
+  refreshSubscription!: Subscription;
   tableSubscription: Subscription;
   sortSubscription!: Subscription | undefined;
   dataSubscription!: Subscription | undefined;
   tableName = '';
 
   resultsLength = 0;
+
+  refreshing = false;
 
   errorMessage!: string | undefined;
   table$ = new BehaviorSubject<FullTable | undefined>(undefined);
@@ -135,7 +138,25 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
     this.sortSubscription?.unsubscribe();
     this.tableSubscription.unsubscribe();
     this.dataSubscription?.unsubscribe();
+    this.refreshSubscription?.unsubscribe();
     this.table$.complete();
+  }
+
+  refreshEndpoints() {
+    this.refreshing = true;
+    this.refreshSubscription = this.zcService.refreshEndpoints().subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: (err) => {
+        this.refreshing = false;
+        if (err.error) {
+          this.errorMessage = err.error.message;
+        } else {
+          this.errorMessage = 'Unknown Error';
+        }
+      },
+    });
   }
 
   lengthIsSuperior(variable: any) {
