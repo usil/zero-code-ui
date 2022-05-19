@@ -1,5 +1,5 @@
 {
   "toggle": true,
-  "title": "Zero Code",
+  "title": "${WEB_TITLE}",
   "api": "${ZERO_CODE_API_BASE_URL}"
 }
