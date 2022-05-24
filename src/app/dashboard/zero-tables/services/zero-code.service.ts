@@ -15,6 +15,14 @@ export class ZeroCodeService {
     window.open(this.zeroCodeApi + `/docs/#/${tableName}`);
   }
 
+  executeQuery(dbQuery: string) {
+    return this.http
+      .post<QueryExecResult>(this.zeroCodeApi + '/zero-code/raw-query', {
+        dbQuery,
+      })
+      .pipe(first());
+  }
+
   getTables(): Observable<TablesResult> {
     return this.http
       .get<TablesResult>(this.zeroCodeApi + '/table')
@@ -62,6 +70,12 @@ interface QueryPaginationResult {
   message: string;
   code: number;
   content: QueryPaginationContent;
+}
+
+interface QueryExecResult {
+  message: string;
+  code: number;
+  content: any;
 }
 
 interface QueryPaginationContent {

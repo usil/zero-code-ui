@@ -34,6 +34,14 @@
     >
       <div class="list-container">
         <div
+          (click)="navigateTo('/dashboard/raw-query')"
+          class="expansion-element"
+        >
+          <mat-icon class="icon-expansion">storage</mat-icon>
+          <span>Raw Query</span>
+          <span class="exp-spacer"></span>
+        </div>
+        <div
           (click)="tablesPanelOpen = !tablesPanelOpen"
           class="expansion-element"
         >

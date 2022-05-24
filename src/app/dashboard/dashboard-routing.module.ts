@@ -1,3 +1,4 @@
+import { RawQueryComponent } from './raw-query/raw-query.component';
 import { AdminGuard } from './../guards/admin.guard';
 import { UserProfileComponent } from './access/user-profile/user-profile.component';
 import { ApplicationResourceComponent } from './access/application-part/application-resource.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
         canLoad: [AdminGuard],
       },
       { path: 'profile', component: UserProfileComponent },
+      { path: 'raw-query', component: RawQueryComponent },
       { path: 'table/:tableName', component: ZeroTablesComponent },
       { path: 'table/:tableName/meta-data', component: MetaDataComponent },
       { path: '', redirectTo: 'profile', pathMatch: 'full' },

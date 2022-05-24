@@ -5,7 +5,6 @@ import {
   merge,
   of,
   startWith,
-  Subject,
   Subscription,
   switchMap,
 } from 'rxjs';
@@ -59,6 +58,11 @@ export class ZeroTablesComponent implements OnInit, OnDestroy {
         if (this.sort && this.sort.active) {
           this.sort.active = '';
         }
+
+        if (this.paginator) {
+          this.paginator.pageIndex = 0;
+        }
+
         this.sortSubscription?.unsubscribe();
         this.dataSubscription?.unsubscribe();
         this.dataSubscription = undefined;

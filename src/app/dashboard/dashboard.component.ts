@@ -5,7 +5,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import routes from './routes';
 import { environment } from 'src/environments/environment';
 import {
-  Column,
   Table,
   ZeroCodeService,
 } from './zero-tables/services/zero-code.service';
@@ -18,7 +17,7 @@ export class DashboardComponent implements OnInit {
   mobileQuery: MediaQueryList;
   routesList = routes;
   title = environment.title;
-  username: String;
+  username: string;
   tablesPanelOpen = false;
   authPanelOpen = false;
   isAdminUser: boolean;

@@ -1,15 +1,14 @@
-# Template angular 1.0.1
+# Zero-code UI 0.0.3
 
-## Coverage
+This is the front end of the zero-code platform.
 
-```text
-Statements : 95.52% ( 64/67 )
-Branches : 87.5% ( 7/8 )
-Functions : 91.3% ( 21/23 )
-Lines : 96.77% ( 60/62 )
+## Usage with the back-end
+
+Check the [zero-code repositorie](https://github.com/usil/zero-code-api) to know how to configure the back end. Just make shure to reference the correct port in the enviroment variables.
+
+```txt
+ZERO_CODE_API_BASE_URL=http://localhost:2111
 ```
-
-This is a simple template to use angular with material
 
 ## Technologies Used
 
@@ -18,7 +17,7 @@ This is a simple template to use angular with material
 
 ## Requirement
 
-- Nodejs >12
+- Nodejs >14
 
 ## Features
 
@@ -50,35 +49,7 @@ You can also look a the testing here as a template. The testing only covers the 
 
 ## For Production
 
-First use `ng build` then `npm start`, this will run `nodeboot-spa-server dist/template-dashboard -s settings.json -p 2000 --allow-routes`
-
-## For Production with Docker
-
-- Build the image
-
-```
-docker build -t spa-angular-starter .
-```
-
-- Run
-
-By default, 8080 port is used.
-
-```
-docker run -it -p 3000:8080 --name acme_web spa-angular-starter
-```
-
-If you want to inject some variable to your spa
-
-```
-docker run -it -p 3000:8080 \
--e ACME_API_BASE_URL=https://acme-api.com  \
--e ACME_WELCOME_QUOTE="welcome folk" \
--e ACME_BACKGROUND_COLOR="green" \
---name acme-web spa-angular-starter
-```
-
-Point your browser to: http://localhost:3000 and you will see your spa rendered and an endpoint with your settings http://localhost:3000/settings.json ready to use.
+First use `ng build` then `npm start`, this will run `nodeboot-spa-server dist/zero-code-ui -s settings.json -p 2112 --allow-routes`
 
 ## Contributors
 

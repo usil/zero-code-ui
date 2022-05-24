@@ -1,0 +1,36 @@
+<div class="error-display" *ngIf="errorMessage">
+  <h5>{{ errorMessage }}</h5>
+</div>
+<section>
+  <h1>Database Query</h1>
+  <form [formGroup]="rawFormGroup">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Raw query statement</mat-label>
+      <textarea
+        matInput
+        formControlName="rawQueryStatement"
+        placeholder="Ex. SELECT * FROM table..."
+      ></textarea>
+    </mat-form-field>
+    <button
+      (click)="executeQuery(rawFormGroup.value)"
+      type="submit"
+      color="accent"
+      class="full-width"
+      mat-flat-button
+    >
+      Exeute Query
+    </button>
+  </form>
+  <div class="result">
+    <h3>Result</h3>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Raw query statement</mat-label>
+      <textarea
+        [formControl]="result"
+        class="result-text-area"
+        matInput
+      ></textarea>
+    </mat-form-field>
+  </div>
+</section>

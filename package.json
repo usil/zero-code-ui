@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "dotenv": "^16.0.1",
     "ngx-clipboard": "^15.0.1",
     "nodeboot-oauth2-starter-ui": "git+https://github.com/usil/nodeboot-oauth2-ui-starter-dist.git",
     "rxjs": "~7.4.0",

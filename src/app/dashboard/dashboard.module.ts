@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashBoardMaterials } from './material/material.module';
-import { FormsComponent } from './forms/forms.component';
 import { TablesComponent } from './tables/tables.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccessComponent } from './access/access.component';
@@ -15,10 +14,10 @@ import { UserProfileComponent } from './access/user-profile/user-profile.compone
 import { ZeroTablesComponent } from './zero-tables/zero-tables.component';
 import { MetaDataComponent } from './zero-tables/meta-data/meta-data.component';
 import { NodebootOauth2StarterModule } from 'nodeboot-oauth2-starter-ui';
+import { RawQueryComponent } from './raw-query/raw-query.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-    FormsComponent,
     TablesComponent,
     AccessComponent,
     UserComponent,
@@ -28,6 +27,7 @@ import { NodebootOauth2StarterModule } from 'nodeboot-oauth2-starter-ui';
     UserProfileComponent,
     ZeroTablesComponent,
     MetaDataComponent,
+    RawQueryComponent,
   ],
   imports: [
     CommonModule,
